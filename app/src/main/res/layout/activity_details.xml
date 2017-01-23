@@ -1,11 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <include layout="@layout/toolbar"/>
+
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Gentleman"/>
+        android:layout_height="200dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WhatsApp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/colorPrimaryText"
+                android:id="@+id/title_movie"
+                android:textSize="20sp"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_toLeftOf="@+id/image_thumbnail"/>
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In this world, is the destiny of mankind controlled by some transcendental entity or law? Is it like the hand of God hovering above? At least it is true that man has no control, even over his own will. Man takes up the sword in order to shield the small wound in his heart sustained in a far-off time beyond remembrance. Man wields the sword so that he may die smiling in some far-off time beyond perception."
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:textColor="@color/colorPrimaryText"
+                android:id="@+id/description_movie"
+                android:textSize="14sp"
+                android:paddingTop="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_toLeftOf="@+id/image_thumbnail"
+                android:layout_below="@+id/title_movie"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:id="@+id/layout_actions"
+                android:layout_alignParentBottom="true"
+                >
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relative_popularity"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:src="@mipmap/ic_star_outline"
+                        android:id="@+id/ic_star_outline" />
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="24dp"
+                        android:id="@+id/popularity"
+                        android:textSize="18dp"
+                        android:text="8.0"
+                        android:gravity="center"
+                        android:layout_below="@+id/ic_star_outline"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relative_date"
+                    android:gravity="center_horizontal"
+                    android:layout_toRightOf="@id/relative_popularity"
+                    android:layout_weight="1" >
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="24dp"
+                        android:id="@+id/image_date"
+                        android:src="@mipmap/ic_action_time"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:id="@+id/release_date"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:text="01/01/2015"
+                        android:layout_below="@+id/image_date"
+                        />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/lb_tv_white"
+                android:id="@+id/image_thumbnail"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                >
+            </com.android.volley.toolbox.NetworkImageView>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

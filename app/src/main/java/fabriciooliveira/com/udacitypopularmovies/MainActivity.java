@@ -3,6 +3,7 @@ package fabriciooliveira.com.udacitypopularmovies;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements GridView.OnItemCl
     }
 
     private void initializeComponents() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(getString(R.string.app_title));
+
         mRequestQueue = UdacityPopularMoviesApplication.getInstance().getmRequestQueue();
 
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements GridView.OnItemCl
 
 
     private void requestMovieList(){
-        mMovieList.clear();
+        clearMovieList(mMovieList);
         mProgressBar.setVisibility(View.VISIBLE);
 
         StringRequest request = new StringRequest(
@@ -92,16 +97,30 @@ public class MainActivity extends AppCompatActivity implements GridView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(this, "gentleman", Toast.LENGTH_SHORT).show();
+        Movie movie = mMovieList.get(i);
+
+        if (movie != null) {
+            Intent intent=new Intent(this, MovieDetails.class);
+            intent.putExtra("movie", movie);
+
+            startActivity(intent);
+        }
+    }
+
+    private void clearMovieList(List<Movie> list) {
+        if (list != null) {
+            list.clear();
+        }
+
     }
 
     class Sucesso implements Response.Listener<String> {
 
         public void onResponse(String response) {
             if (!TextUtils.isEmpty(response.toString())) {
-                List<Movie> mListMovie = JSONParsingUtils.jsonParser(response.toString());
+                mMovieList = JSONParsingUtils.jsonParser(response.toString());
 
-                mMovieAdapter.setmMovieList(mListMovie);
+                mMovieAdapter.setmMovieList(mMovieList);
                 mGridView.setAdapter(mMovieAdapter);
             }
             mProgressBar.setVisibility(View.INVISIBLE);

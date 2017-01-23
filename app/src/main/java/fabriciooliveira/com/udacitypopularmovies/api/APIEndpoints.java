@@ -8,6 +8,8 @@ public class APIEndpoints {
 
     public static final String BASE_URL="https://api.themoviedb.org/3/";
 
+    public static final String API_KEY = "";
+
     public static final String KEY_RESULTS ="results";
 
     public static final String KEY_ADULT = "adult";
