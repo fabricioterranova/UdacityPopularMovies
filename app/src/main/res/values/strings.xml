@@ -7,5 +7,11 @@
     <string name="popular_movies">Popular Movies</string>
     <string name="details_movie">Movie Details</string>
     <string name="movie">movie</string>
+    <string name="most_popular">most_popular</string>
+    <string name="highest_rated">highest_rated</string>
+    <string name="status_user_choice">status_user_choice</string>
+    <string name="fragment_sort_movie">fragment_sort_movie</string>
+    <string name="movie_state">movie_state</string>
+    <string name="movie_detail_state">movie_detail_state</string>
 
 </resources>

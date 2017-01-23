@@ -6,9 +6,11 @@
 
     <color name="lb_tv_white">#FFCCCCCC</color>
 
-    <color name="colorPrimaryText">#212121</color>
-    <color name="colorSecondaryText">#727272</color>
+    <color name="colorPrimaryText">#3F51B5</color>
+    <color name="colorSecondaryText">#303F9F</color>
     <color name="colorDivider">#B6B6B6</color>
+
+    <color name="blackColor">#212121</color>
 
     <color name="divider_grey">#D4D4D4</color>
 

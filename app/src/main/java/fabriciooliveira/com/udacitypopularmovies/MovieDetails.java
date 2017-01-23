@@ -1,11 +1,13 @@
 package fabriciooliveira.com.udacitypopularmovies;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -15,7 +17,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.zip.DataFormatException;
 
 import fabriciooliveira.com.udacitypopularmovies.model.Movie;
 
@@ -30,12 +31,18 @@ public class MovieDetails extends AppCompatActivity {
     private ImageLoader mImageLoader;
     private NetworkImageView mMovieThumbnail;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_details);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            Window window = getWindow();
+            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.getAttributes().flags &= (~WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
 
         mImageLoader = UdacityPopularMoviesApplication.getInstance().getmImageLoader();
 
@@ -63,6 +70,11 @@ public class MovieDetails extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(getString(R.string.movie), mMovie);
+    }
+
     private void initializeComponents() {
         mTitle = (TextView) findViewById(R.id.title_movie);
         mPlot = (TextView) findViewById(R.id.description_movie);
@@ -78,7 +90,7 @@ public class MovieDetails extends AppCompatActivity {
         mPlot.setText(mMovie.getOverview());
         mPopularity.setText(String.valueOf(mMovie.getPopularity()));
 
-        mMovieThumbnail.setImageUrl(mMovie.getPosterPath(), mImageLoader);
+        mMovieThumbnail.setImageUrl("https://image.tmdb.org/t/p/w185" + mMovie.getPosterPath(), mImageLoader);
 
         Date date = null;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -95,6 +107,5 @@ public class MovieDetails extends AppCompatActivity {
         }
 
     }
-
 
 }
